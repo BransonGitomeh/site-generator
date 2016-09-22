@@ -1,12 +1,30 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
+var compression = require('compression');
+var minifyHTML = require('express-minify-html');
 
 var app = express();
 
 app.engine('handlebars', exphbs({
 	defaultLayout: 'main'
 }));
+
 app.set('view engine', 'handlebars');
+
+app.use(minifyHTML({
+    override:      true,
+    htmlMinifier: {
+        removeComments:            true,
+        collapseWhitespace:        true,
+        collapseBooleanAttributes: true,
+        removeAttributeQuotes:     true,
+        removeEmptyAttributes:     true,
+        minifyJS:                  true
+    }
+}));
+
+app.use(express.static(__dirname + '/output'));
+
 
 app.get('/', function(req, res) {
 	res.render('home');
