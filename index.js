@@ -16,6 +16,10 @@ app.get('/foo', function(req, res) {
 	res.render('foo');
 });
 
+app.get('/foo/bar', function(req, res) {
+	res.render('foo');
+});
+
 app.listen(3000, function(error) {
 	console.log("server started at 3000")
 

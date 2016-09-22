@@ -1,5 +1,5 @@
 var request = require('request');
-
+var filendir = require('filendir');
 var fs = require('fs');
 
 module.exports = function(app) {
@@ -10,14 +10,14 @@ module.exports = function(app) {
 
 			request(('http://localhost:3000' + r.route.path), function(error, response, body) {
 				if (!error && response.statusCode == 200) {
-					console.log(body) // Show the HTML for the Google homepage.
-					fs.writeFile("./output/" + ( r.route.path == "/" ? "index" : r.route.path ) + ".html", body, function(err) {
-						if (err) {
-							return console.log(err);
-						}
+					
+					const filename = ("./output/" + (r.route.path == "/" ? "index" : r.route.path) + ".html")
 
-						console.log("The file was saved!");
-					});
+					filendir.wa(filename, body, function(err) {
+						if (!err) {
+							console.log('File written!')
+						}
+					})
 				}
 			})
 		}
