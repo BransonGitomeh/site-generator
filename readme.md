@@ -15,4 +15,12 @@ Every express route should respond with a full page maybe using `res.render('foo
 
 Nested routes are represented using nested folders ie `/foo/bar` route will make `/foo/bar.html` with foo being a folder
 
+When linking from one page to another just refer to the root file as ussual ie, `foo` will use `href="foo/bar.html"` to call the other page into view.
+
+
+
 All the generated files are gzipped by default since its a good practise to  serve minified html. lol
+
+# partials, layout and other cool things that make work easy
+
+please refer to https://github.com/ericf/express-handlebars for complete docs :-D Kwaheri!
