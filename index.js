@@ -23,20 +23,17 @@ app.use(minifyHTML({
     }
 }));
 
-app.use(express.static(__dirname + '/output'));
 
 
-app.get('/', function(req, res) {
+app.get('/index.html', function(req, res) {
 	res.render('home');
 });
 
-app.get('/foo', function(req, res) {
+app.get('/foo.html', function(req, res) {
 	res.render('foo');
 });
 
-app.get('/foo/bar', function(req, res) {
-	res.render('foo');
-});
+app.use(express.static(__dirname + '/output'));
 
 app.listen(3000, function(error) {
 	console.log("server started at 3000")
